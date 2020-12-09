@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import BaseVideo from "./BaseVideo";
+import BaseVideo from "./VideoComponent";
 
 export default {
     name: 'HelloWorld',

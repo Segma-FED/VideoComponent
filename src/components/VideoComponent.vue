@@ -8,7 +8,9 @@
 <script>
 import { uid } from '@segma/snippet';
 import { playStatus, playErrors } from '@/utils/constant';
+import $ from 'jquery'
 
+window.$ = $
 const NetClient = require('../../public/net_client/NETClient');
 if (!window.NetClientInitialized) {
     window.NetClient = NetClient;
@@ -61,6 +63,10 @@ export default {
         servicePort: {
             type: Number,
             default: Number(process.env.VUE_APP_NET_CLIENT_PORT)
+        },
+        showLog: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -97,8 +103,8 @@ export default {
         }
     },
     watch: {
-        jointId(val) {
-            console.log('jointId changed', val);
+        jointId() {
+            // console.log('jointId changed', val);
             this.createPlayer();
         },
         playState(val) {
@@ -147,7 +153,7 @@ export default {
          * 播放器状态改变回调
          * */
         playerCallBack(event) {
-            console.log('event.type', event.type);
+            this.log('event.type', event.type);
             switch (event.type) {
                 case 1://请求视频流失败，视频链接断开
                     this.setPlayState(playStatus.ERROR, playErrors.BREAK_OFF);
@@ -173,12 +179,12 @@ export default {
         },
         play() {
             if (this.playState === playStatus.UNINITIALIZED) {
-                console.log('init player first');
+                this.log('init player first');
                 return;
             }
             if (!this.deviceIdValid) {
                 this.setPlayState(playStatus.ERROR, playErrors.INCOMPLETE_PARAMETERS);
-                console.log('play need playId and deviceId');
+                this.log('play need playId and deviceId');
                 return;
             }
             this.setMute();
@@ -186,7 +192,7 @@ export default {
             if (this.playFun() < 0) {
                 this.setPlayState(playStatus.ERROR, playErrors.PLAY_FAIL);
             }
-            console.log('this.playState', this.playState);
+            this.log('this.playState', this.playState);
         },
         /**
          * 根据index和playId开始直播
@@ -219,7 +225,7 @@ export default {
          * 根据playId暂停播放
          * */
         stopPlay() {
-            console.log('暂停播放', this.playId);
+            this.log('暂停播放', this.playId);
             this.netClient.StopPlay(this.playId);
             this.setPlayState(playStatus.PAUSED);
         },
@@ -232,21 +238,16 @@ export default {
                 this.netClient.ReleasePlayer(this.playId);
                 this.setPlayState(playStatus.UNINITIALIZED);
             } else {
-                console.log(`palyer doesn't init yet`);
+                this.log(`palyer doesn't init yet`);
             }
         },
         /**
          * 打印日志
          * */
-        log(tip) {
-            if (!Number(process.env.VUE_APP_VIDEO_SHOW_LOG)) {
-                return;
+        log() {
+            if (this.showLog) {
+                console.log(Array.from(arguments).join())
             }
-            let str = '';
-            ['deviceId', 'playId', '_playIndex', 'fileId'].forEach(key => {
-                str += `${key}:${this[key]};`;
-            });
-            console.log(`${tip}：${str}`);
         }
     }
 };
