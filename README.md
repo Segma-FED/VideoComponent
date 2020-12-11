@@ -23,7 +23,7 @@ import VideoComponent from '@segma/video-component';
                     :service-port="30886"></video-component>
 ```
 
-### 组件参数
+## 组件参数
 | 参数 | 类型 | 说明 | 必填 | 默认值 |  
 | ------ | ------ | ------ | ----- | ----- |
 | mode | String | 播放器模式（'realPlay'直播, 'backPlay'点播） | 否 | 'realPlay' |
@@ -34,3 +34,6 @@ import VideoComponent from '@segma/video-component';
 | serviceIp | String | 服务器IP | 是 | |
 | serviceIp | Number | 服务器端口 | 是 | -1 |
 | showLog | Boolean | 播放器是否打印日志 | 否 | false |
+
+**特别提醒：** 由于视频组件源码原因，本组件会默认在全局环境中引入jQuery 3.5.1，如果有冲突请谨慎使用。
+
