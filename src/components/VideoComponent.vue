@@ -56,11 +56,13 @@ export default {
         },
         // 底层平台的IP
         serviceIp: {
+            required: true,
             type: String,
             default: ''
         },
         // 底层平台的端口
         servicePort: {
+            required: true,
             type: Number,
             default: -1
         },
