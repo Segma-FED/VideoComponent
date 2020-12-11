@@ -13,11 +13,11 @@ npm i @segma/video-component
 
 ### 2.项目中使用
 ```javascript
-import VideoComponent from '@segma/video-component';
+import {VideoComponent, playStatus, playErrors} from '@segma/video-component';
 ```
 
 ```vue
-<video-component :auto-play="true"
+<video-component    :auto-play="true"
                     :device-id="17"
                     :service-ip="'10.76.7.8'"
                     :service-port="30886"></video-component>
@@ -34,6 +34,25 @@ import VideoComponent from '@segma/video-component';
 | serviceIp | String | 服务器IP | 是 | |
 | serviceIp | Number | 服务器端口 | 是 | -1 |
 | showLog | Boolean | 播放器是否打印日志 | 否 | false |
+| changePlayState(playState,errorState) | Function | 播放器状态改变回调 | 否 | |
+
+### playStatus
+| 参数 | 值 | 说明 | 
+| ------ | ------ | ------ |
+| UNINITIALIZED | -1 | 尚未初始化 | 
+| INITIALIZED | 10 | 已经初始未播放 | 
+| ON_PLAY | 20 | 正常播放 | 
+| PAUSED | 30 | 正常暂停 | 
+| LOADING | 40 | 加载中 | 
+| ERROR | 50 | 错误状态 | 
+
+### playErrors
+| 参数 | 值 | 说明 | 
+| ------ | ------ | ------ |
+| INCOMPLETE_PARAMETERS | 300 | 不完整参数，如：没有fileId | 
+| PLAY_FAIL | 400 | 播放失败 | 
+| BREAK_OFF | 500 | 中断，如：视频链接中断 | 
+| UNKNOWN | 600 | 未知错误 | 
 
 **特别提醒：** 由于视频组件源码原因，本组件会默认在全局环境中引入jQuery 3.5.1，如果有冲突请谨慎使用。
 

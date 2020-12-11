@@ -111,7 +111,7 @@ export default {
         },
         playState(val) {
             // console.log('播放状态改变', val);
-            this.$emit('changePlayState', val);
+            this.$emit('changePlayState', val, this.errorState);
             // 如果播放器准备就绪且自动播放，则播放
             if (val === playStatus.INITIALIZED && this.autoPlay) {
                 this.play();

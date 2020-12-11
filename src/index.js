@@ -2,6 +2,7 @@
  * Created by Lucas on 2020/12/11.
  */
 import VideoComponent from './components/VideoComponent'
+import { playStatus, playErrors } from './utils/constant'
 
 export function install(Vue) {
     if (install.installed) return;
@@ -23,4 +24,8 @@ if (GlobalVue) {
     GlobalVue.use(plugin)
 }
 
-export default VideoComponent
+export {
+    VideoComponent,
+    playStatus,
+    playErrors
+}
