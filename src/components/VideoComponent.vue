@@ -10,7 +10,7 @@ import { uid } from '@segma/snippet';
 import { playStatus, playErrors } from '@/utils/constant';
 import $ from 'jquery'
 
-window.$ = $
+!window.$ && (window.$ = $);
 const NetClient = require('../../public/net_client/NETClient');
 if (!window.NetClientInitialized) {
     window.NetClient = NetClient;
@@ -57,16 +57,16 @@ export default {
         // 底层平台的IP
         serviceIp: {
             type: String,
-            default: String(process.env.VUE_APP_NET_CLIENT_IP)
+            default: ''
         },
         // 底层平台的端口
         servicePort: {
             type: Number,
-            default: Number(process.env.VUE_APP_NET_CLIENT_PORT)
+            default: -1
         },
         showLog: {
             type: Boolean,
-            default: true
+            default: false
         }
     },
     data() {

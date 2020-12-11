@@ -1,7 +1,9 @@
 <template>
     <div class="hello">
         <base-video :auto-play="true"
-                    :device-id="17"></base-video>
+                    :device-id="17"
+                    :service-ip="'10.76.7.8'"
+                    :service-port="30886"></base-video>
     </div>
 </template>
 
