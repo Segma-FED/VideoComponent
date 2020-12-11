@@ -1,6 +1,6 @@
 # VideoComponent
 ## 简介
-Easy Sense视频直播Vue组件
+Easy Sense视频直播Vue组件（WebRtc版）
 
 ## 仓库地址
 https://github.com/Segma-FED/VideoComponent
