@@ -51,12 +51,13 @@ import {VideoComponent, playStatus, playErrors} from '@segma/video-component';
 | UNKNOWN | 'UNKNOWN' | 未知错误 | 
 
 ## 组件函数
-除了以上参数外，组件还提供了`play()`、`stop()`、`forceReplay()`三个接口用于手动控制视频，**一般情况下是用不到的**。
-| 函数名 | 说明 |
-| ------ | ------ | ------ |
-| play | 开始直播 |
-| stop | 暂停直播 |
-| forceReplay | 强制播放：销毁播放器 =》创建播放器 =》开始直播，慎用 |
+除了以上参数外，组件还提供了`play()`、`stop()`、`forceReplay()`三个接口用于手动控制视频，**一般情况下是用不到的**。  
+
+| 函数名 | 说明 | 
+| ---- | ---- | 
+| play | 开始直播 | 
+| stop | 暂停直播 | 
+| forceReplay | 强制播放：销毁播放器 =》创建播放器 =》开始直播，慎用 | 
 
 **特别提醒：** 由于视频组件源码原因，本组件会默认在全局环境中引入jQuery 3.5.1，如果有冲突请谨慎使用。
 
