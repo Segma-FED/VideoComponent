@@ -1,7 +1,10 @@
 <template>
     <div class="hello">
-        <base-video :auto-play="true"
+        <button @click="handleStart">开始</button>
+        <button @click="handlePause">停止</button>
+        <base-video ref="video"
                     :device-id="17"
+                    :show-log="true"
                     :service-ip="'10.76.7.8'"
                     :service-port="30886"></base-video>
     </div>
@@ -15,6 +18,14 @@ export default {
     components: { BaseVideo },
     props: {
         msg: String
+    },
+    methods: {
+        handleStart() {
+            this.$refs.video.play()
+        },
+        handlePause() {
+            this.$refs.video.stop()
+        }
     }
 }
 </script>
